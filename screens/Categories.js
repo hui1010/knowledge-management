@@ -6,28 +6,26 @@ import Posts from './Posts'
 
 export default function Categories ({navigation}) {
 
-    const [posts, setPosts] = useState([])
+    const [categories, setCategories] = useState([])
     const fetchData = async () => {
-        await fetch("https://knologram.app/wp-json/wp/v2/posts/")
+        await fetch(`https://www.knologram.app/wp-json/wp/v2/categories?posts`)
         .then(response => response.json())
         .then(data => {
-            setPosts(data)    
+            setCategories(data)    
         })    
     }
 
     useEffect(() => {fetchData()}, [])
 
-    const allCategories = []
-    posts.map(post=> allCategories.push(post.categories))
-    
-    const unique = new Set(allCategories.flat())
-    
-    const uniqueCategories = [...unique]
+    // const allCategories = []
+    // posts.map(post=> allCategories.push(post.categories))
+    // const unique = new Set(allCategories.flat())
+    // const uniqueCategories = [...unique]
 
 
     const handleTextPress = (item) => {
         navigation.navigate('Posts', {
-            category: item
+            category: item.id
         })
     }
 
@@ -59,12 +57,12 @@ export default function Categories ({navigation}) {
         <View>
             
             <FlatList 
-                keyExtractor={(item) => `${item}`}
-                data={uniqueCategories} 
+                keyExtractor={(item) => `${item.id}`}
+                data={categories} 
                 renderItem={({item}) =>(
                     <TouchableOpacity onPress={()=>handleTextPress(item)}>
                         <View style={styles.post}>
-                            <Text style={styles.title} numberOfLines={2}>Category {item}</Text>
+                            <Text style={styles.title} numberOfLines={2}>{item.name}</Text>
                             <AntDesign style={styles.rightArrow} name="right" size={24} color="black" />
                         </View>
                     </TouchableOpacity>
