@@ -14,13 +14,9 @@ export default function Posts({navigation, route}) {
     
     useEffect(()=>{fetchData()}, [])
 
-    
-    const matchedPosts = posts.filter(post => post.categories === category)
     const handleTextPress = (item) => {
         navigation.navigate("Post", item)
     }
-
-
 
     const styles = StyleSheet.create({
         post: {
