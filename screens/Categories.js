@@ -3,6 +3,7 @@ import {View, StyleSheet, Text, FlatList, TouchableOpacity, ActivityIndicator} f
 import { AntDesign } from '@expo/vector-icons';
 
 import Posts from './Posts'
+import styles from '../styles/listStyle'
 
 export default function Categories ({navigation}) {
 
@@ -17,42 +18,12 @@ export default function Categories ({navigation}) {
 
     useEffect(() => {fetchData()}, [])
 
-    // const allCategories = []
-    // posts.map(post=> allCategories.push(post.categories))
-    // const unique = new Set(allCategories.flat())
-    // const uniqueCategories = [...unique]
-
-
     const handleTextPress = (item) => {
         navigation.navigate('Posts', {
             category: item.id
         })
     }
 
-    const styles = StyleSheet.create({
-            post: {
-                height: 100,
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginHorizontal: 20,
-                marginVertical: 10,
-                padding: 15,
-                backgroundColor:"#172a3a",
-            },
-            title: {
-                width: '80%',
-                fontSize: 20,
-                flexWrap: 'wrap',
-                alignSelf: 'center',
-                color: "white",
-                flexShrink: 1,
-            },
-            rightArrow: {
-                alignSelf: 'center',
-                color: "white"
-            }
-    })
     return (
         <View>
             

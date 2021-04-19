@@ -3,19 +3,39 @@ import {View, StyleSheet, Text, FlatList, TouchableOpacity, ActivityIndicator} f
 import { AntDesign } from '@expo/vector-icons';
 
 import Page from './Page'
+import styles from '../styles/listStyle'
 
-export default function Posts({navigation, route}) {
+export default function Pages({navigation, route}) {
+    const [pages, setPages] = useState([])
+
+    const fetchPages = () => {
+        fetch(`https://knologram.app/wp-json/wp/v2/pages`)
+        .then(response => response.json())
+        .then(data => setPages(data))
+
+    }
     
-    const handlePress = () => {
-        navigation.navigate("Page")
+    useEffect(()=>{fetchPages()}, [])
+    
+    const handlePress = (item) => {
+        navigation.navigate("Page", item)
     }
 
     return (
         <View>
-            <TouchableOpacity onPress={handlePress}>
-               <Text>Hello world</Text> 
-            </TouchableOpacity>
-            
+            <FlatList 
+                keyExtractor={(item) => `${item.id}`}
+                data={pages} 
+                renderItem={({item}) =>(  
+                    <TouchableOpacity onPress={()=>handlePress(item)}>
+                        <View style={styles.post}>
+                            <Text style={styles.title} numberOfLines={2}> {item.title.rendered}</Text>
+                            <AntDesign style={styles.rightArrow} name="right" size={24} color="black" />
+                        </View>
+                    </TouchableOpacity>
+                    
+                )}
+            />        
         </View>
     )
 }
