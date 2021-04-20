@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {View, Text, Button} from 'react-native'
+import {View, Text, Button, ScrollView} from 'react-native'
 import * as WebBrowser from 'expo-web-browser'
 
 import styles from '../styles/contentStyle'
@@ -29,15 +29,17 @@ export default function Page({route, navigation}) {
 
     return (
         <View style={styles.content}>
-            <Text style={styles.title}>{title.rendered}</Text>
-            <View style={styles.author}>
-                <Text>Author: {authorName}</Text>
-                <Text>{dateStr}</Text>
-            </View>
-            <Text style={styles.excerpt}>{excerptStr}</Text>
-            <View style={styles.link}>
-               <Button title="Go to website" color="white" onPress={handlePress}/>
-            </View>   
+            <ScrollView>
+                <Text style={styles.title}>{title.rendered}</Text>
+                <View style={styles.author}>
+                    <Text>Author: {authorName}</Text>
+                    <Text>{dateStr}</Text>
+                </View>
+                <Text style={styles.excerpt}>{excerptStr}</Text>
+                <View style={styles.link}>
+                <Button title="Go to website" color="white" onPress={handlePress}/>
+                </View>   
+            </ScrollView>
         </View>
     )  
 }

@@ -1,9 +1,10 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, TouchableHighlight, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight, SafeAreaView, TouchableWithoutFeedback} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
+import { MaterialCommunityIcons, Ionicons, FontAwesome5, Feather } from '@expo/vector-icons'
 
 import Posts from './screens/Posts'
 import Post from './screens/Post'
@@ -28,7 +29,7 @@ export default function App() {
   }
 
   return (
-    <>
+    <View style={styles.container}>
     <NavigationContainer>
       { categoryView && !pageView ? 
         <Stack.Navigator initialRouteName="Categories" >
@@ -44,43 +45,36 @@ export default function App() {
       }
     </NavigationContainer>
     <SafeAreaView style={styles.navigates}>
-      <TouchableHighlight onPress={handlePressCategory}>
-        <Text style={[styles.navigate, categoryView && styles.selected]}>Category List</Text>    
-      </TouchableHighlight> 
-      <TouchableHighlight onPress={handlePressPage}>
-        <Text style={[styles.navigate, pageView && styles.selected]}>Page List</Text>
-      </TouchableHighlight>
+      <TouchableWithoutFeedback onPress={handlePressCategory}>
+        <MaterialCommunityIcons name="view-module-outline" size={20} color={categoryView? "black" : "grey"} />
+      </TouchableWithoutFeedback> 
+      <TouchableWithoutFeedback onPress={handlePressPage}>
+        <Ionicons name="md-bookmarks-outline" size={20} color={pageView? "black" : "grey"} />
+      </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback >
+        <FontAwesome5 name="heart" size={20} color="grey" />
+      </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback >
+        <Feather name="share" size={20} color="grey" />
+      </TouchableWithoutFeedback>
     </SafeAreaView>
     <StatusBar style="auto" />
-    </>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   navigates: {
     width: '100%',
     display: 'flex',
-    flexDirection: 'row',   
-    height: 100,
+    flexDirection: 'row',  
+    justifyContent: 'space-evenly', 
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 0,
+    backgroundColor: '#eee',
   },
-  navigate: {
-    flex: 1,
-    minWidth: '50%',
-    backgroundColor: 'white',
-    color: 'black',
-    fontSize: 25,
-    paddingVertical: 15,
-    alignSelf: 'flex-start',
-    textAlign: 'center',
-  },
-  selected: {
-    backgroundColor: 'black',
-    color: 'white'
-  }
 });
