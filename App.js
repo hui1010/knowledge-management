@@ -76,5 +76,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     backgroundColor: '#eee',
+    height: 70
   },
 });
