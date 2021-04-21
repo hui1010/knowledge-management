@@ -24,6 +24,7 @@ export default function Pages({navigation, route}) {
     return (
         <View>
             <FlatList 
+                scrollIndicatorInsets={{right: 0}}
                 keyExtractor={(item) => `${item.id}`}
                 data={pages} 
                 renderItem={({item}) =>(  

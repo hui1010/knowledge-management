@@ -24,6 +24,7 @@ export default function Posts({navigation, route}) {
     return (
         <View>  
             <FlatList 
+                scrollIndicatorInsets={{right: 0}}
                 keyExtractor={(item) => `${item.id}`}
                 data={posts} 
                 renderItem={({item}) =>(  

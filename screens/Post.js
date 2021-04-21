@@ -46,8 +46,8 @@ export default function Post({route, navigation}) {
     }
 
     return (
-        <View style={styles.content}>
-            <ScrollView>
+        <ScrollView scrollIndicatorInsets={{right: 0}}>
+            <View style={styles.content}>
                 <Text style={styles.title}>{title.rendered}</Text>
                 <View>
                     <YoutubePlayer height={200} play={false} videoId={youtubeId}/>
@@ -60,8 +60,8 @@ export default function Post({route, navigation}) {
                             </View>
                         )  
                     })
-                }
-            </ScrollView>
-        </View>
+                }  
+            </View>
+        </ScrollView>
     )  
 }

@@ -28,11 +28,11 @@ export default function Page({route, navigation}) {
     }
 
     return (
-        <View style={styles.content}>
-            <ScrollView>
+        <ScrollView scrollIndicatorInsets={{right: 0}}>
+            <View style={styles.content}>
                 <Text style={styles.title}>{title.rendered}</Text>
                 <Text style={styles.excerpt}>{excerptStr}</Text>  
-            </ScrollView>
-        </View>
+            </View>
+        </ScrollView>
     )  
 }
