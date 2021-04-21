@@ -52,25 +52,15 @@ export default function Post({route, navigation}) {
                 <View>
                     <YoutubePlayer height={200} play={false} videoId={youtubeId}/>
                 </View> 
-                {/* <FlatList 
-                    keyExtractor= {(item,index) => `${index}`}
-                    data={descriptionContent}
-                    renderItem={({item}) => {
-                        <View >
-                            <Text>{item}</Text>
-                        </View>
-                    }}
-                /> */}
                 {
                     descriptionContent.map((item, index) => {
                         return (
-                            <View key={index}>
+                            <View key={index} style={styles.paragraph}>
                                 <Text>{item}</Text>
                             </View>
                         )  
                     })
                 }
-                {/* <Text style={styles.excerpt}>{descriptionContent}</Text>     */}
             </ScrollView>
         </View>
     )  

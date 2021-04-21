@@ -27,5 +27,8 @@ export default StyleSheet.create({
         marginVertical: 10,
         backgroundColor: "#172a3a",
         borderRadius: 5
+    },
+    paragraph: {
+        marginBottom: 10
     }
 })
