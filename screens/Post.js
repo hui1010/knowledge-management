@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import {View, Text, StyleSheet, Button, ScrollView} from 'react-native'
+import {View, Text, StyleSheet, Button, ScrollView, FlatList} from 'react-native'
 import * as WebBrowser from 'expo-web-browser'
 import YoutubePlayer from 'react-native-youtube-iframe'
 
 import styles from '../styles/contentStyle'
+import { TouchableHighlight } from 'react-native-gesture-handler'
 
 export default function Post({route, navigation}) {
 
@@ -29,6 +30,9 @@ export default function Post({route, navigation}) {
     
     // const buttonLink = description.substring(description.indexOf("<a href=") + 9, description.indexOf('">'))
     const descriptionText = description?.substring(description.indexOf(">") + 1, description.lastIndexOf("<"))
+    const descriptionArr = description.split("</p>")
+    const descriptionContent = descriptionArr.map(str=> str.trim().substring(3))
+    console.log(descriptionContent)
     
     const videoLink = acf.our_video?.trim()
     const videoSrc = videoLink?.substring(videoLink.indexOf("src") + 5, videoLink.indexOf(" frameborder"))
@@ -38,6 +42,7 @@ export default function Post({route, navigation}) {
 
     const handlePress = () => {
         WebBrowser.openBrowserAsync(link)
+    
     }
 
     return (
@@ -47,7 +52,25 @@ export default function Post({route, navigation}) {
                 <View>
                     <YoutubePlayer height={200} play={false} videoId={youtubeId}/>
                 </View> 
-                <Text style={styles.excerpt}>{descriptionText}</Text>    
+                {/* <FlatList 
+                    keyExtractor= {(item,index) => `${index}`}
+                    data={descriptionContent}
+                    renderItem={({item}) => {
+                        <View >
+                            <Text>{item}</Text>
+                        </View>
+                    }}
+                /> */}
+                {
+                    descriptionContent.map((item, index) => {
+                        return (
+                            <View key={index}>
+                                <Text>{item}</Text>
+                            </View>
+                        )  
+                    })
+                }
+                {/* <Text style={styles.excerpt}>{descriptionContent}</Text>     */}
             </ScrollView>
         </View>
     )  
