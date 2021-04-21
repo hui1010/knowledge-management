@@ -43,21 +43,11 @@ export default function Post({route, navigation}) {
     return (
         <View style={styles.content}>
             <ScrollView>
-                <View>
-                    <Text>{acf.our_field}</Text>
-                </View> 
-                <View>
-                    <YoutubePlayer height={300} play={false} videoId={youtubeId}/>
-                </View> 
                 <Text style={styles.title}>{title.rendered}</Text>
-                <View style={styles.author}>
-                    <Text>Author: {authorName}</Text>
-                    <Text>{dateStr}</Text>
-                </View>
-                <Text style={styles.excerpt}>{descriptionText}</Text>
-                <View style={styles.link}>
-                <Button title="Go to website" color="white" onPress={handlePress}/>
-                </View>  
+                <View>
+                    <YoutubePlayer height={200} play={false} videoId={youtubeId}/>
+                </View> 
+                <Text style={styles.excerpt}>{descriptionText}</Text>    
             </ScrollView>
         </View>
     )  

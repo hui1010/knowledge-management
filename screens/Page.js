@@ -31,14 +31,7 @@ export default function Page({route, navigation}) {
         <View style={styles.content}>
             <ScrollView>
                 <Text style={styles.title}>{title.rendered}</Text>
-                <View style={styles.author}>
-                    <Text>Author: {authorName}</Text>
-                    <Text>{dateStr}</Text>
-                </View>
-                <Text style={styles.excerpt}>{excerptStr}</Text>
-                <View style={styles.link}>
-                <Button title="Go to website" color="white" onPress={handlePress}/>
-                </View>   
+                <Text style={styles.excerpt}>{excerptStr}</Text>  
             </ScrollView>
         </View>
     )  

@@ -9,6 +9,14 @@ export default StyleSheet.create({
         marginVertical: 10,
         padding: 15,
         backgroundColor:"#172a3a",
+        shadowColor: "#666",
+        shadowOffset: {
+            width: 2,
+            height: 2,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 5,
+        elevation: 1
     },
     title: {
         width: '80%',
