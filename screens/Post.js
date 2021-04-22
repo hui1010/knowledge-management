@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import {View, Text, StyleSheet, Button, ScrollView, FlatList} from 'react-native'
+import {View, Text, StyleSheet, Button, ScrollView} from 'react-native'
 import * as WebBrowser from 'expo-web-browser'
 import YoutubePlayer from 'react-native-youtube-iframe'
+import { WebView } from 'react-native-webview'
 
 import styles from '../styles/contentStyle'
 import { TouchableHighlight } from 'react-native-gesture-handler'
@@ -32,11 +33,11 @@ export default function Post({route, navigation}) {
     const descriptionText = description?.substring(description.indexOf(">") + 1, description.lastIndexOf("<"))
     const descriptionArr = description.split("</p>")
     const descriptionContent = descriptionArr.map(str=> str.trim().substring(3))
-    console.log(descriptionContent)
     
     const videoLink = acf.our_video?.trim()
-    const videoSrc = videoLink?.substring(videoLink.indexOf("src") + 5, videoLink.indexOf(" frameborder"))
+    const videoSrc = videoLink?.substring(videoLink.indexOf("src") + 5, videoLink.indexOf(" frameborder")-1)
     const youtubeId = videoSrc?.substring(videoSrc.lastIndexOf("/"))
+    console.log(videoSrc)
    
     useEffect(()=>{fetchAuthorName()}, [])
 
@@ -50,7 +51,12 @@ export default function Post({route, navigation}) {
             <View style={styles.content}>
                 <Text style={styles.title}>{title.rendered}</Text>
                 <View>
-                    <YoutubePlayer height={200} play={false} videoId={youtubeId}/>
+                    {/* <YoutubePlayer height={200} play={false} videoId={youtubeId}/> */}
+                    <WebView 
+                        style={{height: 188}}
+                        source={{ uri: videoSrc }}
+                        scrollEnabled={false}
+                    />
                 </View> 
                 {
                     descriptionContent.map((item, index) => {
