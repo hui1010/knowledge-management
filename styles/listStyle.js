@@ -8,8 +8,8 @@ export default StyleSheet.create({
         marginHorizontal: 20,
         marginVertical: 10,
         padding: 15,
-        backgroundColor:"#172a3a",
-        shadowColor: "#666",
+        backgroundColor:"white",
+        shadowColor: "#d9d9d9",
         shadowOffset: {
             width: 2,
             height: 2,
@@ -23,11 +23,11 @@ export default StyleSheet.create({
         fontSize: 20,
         flexWrap: 'wrap',
         alignSelf: 'center',
-        color: "white",
+        color: "#172a3a",
         flexShrink: 1,
     },
     rightArrow: {
         alignSelf: 'center',
-        color: "white"
+        color: "#172a3a"
     }
 })
