@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {View, StyleSheet, Text, FlatList, TouchableOpacity, ActivityIndicator} from 'react-native'
+import {View, StyleSheet, Text, FlatList, Pressable, ActivityIndicator} from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 
 import Page from './Page'
@@ -28,12 +28,10 @@ export default function Pages({navigation, route}) {
                 keyExtractor={(item) => `${item.id}`}
                 data={pages} 
                 renderItem={({item}) =>(  
-                    <TouchableOpacity onPress={()=>handlePress(item)}>
-                        <View style={styles.post}>
-                            <Text style={styles.title} numberOfLines={2}> {item.title.rendered}</Text>
-                            <AntDesign style={styles.rightArrow} name="right" size={24} color="black" />
-                        </View>
-                    </TouchableOpacity>
+                    <Pressable onPress={()=>handlePress(item)} style={({pressed}) => [{borderLeftWidth: pressed ? 10 : 0, borderLeftColor: pressed ? '#d9d9d9' : 'white'}, styles.post]}>
+                        <Text style={styles.title} numberOfLines={2}> {item.title.rendered}</Text>
+                        <AntDesign style={styles.rightArrow} name="right" size={24} color="black" />                
+                    </Pressable>
                     
                 )}
             />        

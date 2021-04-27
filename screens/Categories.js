@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {View, StyleSheet, Text, FlatList, TouchableOpacity, ActivityIndicator} from 'react-native'
+import {View, StyleSheet, Text, FlatList, TouchableOpacity, ActivityIndicator, Pressable} from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 
 import Posts from './Posts'
@@ -27,17 +27,14 @@ export default function Categories ({navigation}) {
     return (
         <View>
             <FlatList 
-            
                 scrollIndicatorInsets={{right: 0}}
                 keyExtractor={(item) => `${item.id}`}
                 data={categories} 
                 renderItem={({item}) =>(
-                    <TouchableOpacity onPress={()=>handleTextPress(item)}>
-                        <View style={styles.post}>
-                            <Text style={styles.title} numberOfLines={2}>{item.name}</Text>
-                            <AntDesign style={styles.rightArrow} name="right" size={24} color="black" />
-                        </View>
-                    </TouchableOpacity>
+                    <Pressable onPress={()=>handleTextPress(item)} style={({pressed}) => [{borderLeftWidth: pressed ? 10 : 0, borderLeftColor: pressed ? '#d9d9d9' : 'white'}, styles.post]}>
+                        <Text style={styles.title} numberOfLines={2}>{item.name}</Text>
+                        <AntDesign style={styles.rightArrow} name="right" size={24} color="black" />
+                    </Pressable>
                 )}
             />      
         </View>

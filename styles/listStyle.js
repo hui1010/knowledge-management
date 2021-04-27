@@ -29,5 +29,9 @@ export default StyleSheet.create({
     rightArrow: {
         alignSelf: 'center',
         color: "#172a3a"
+    },
+    pressed: {
+        borderLeftWidth: 2,
+        borderLeftColor: "red"
     }
 })

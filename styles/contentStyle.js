@@ -24,7 +24,6 @@ export default StyleSheet.create({
         shadowOpacity: 1,
         shadowRadius: 5,
         elevation: 1,
-        marginVertical: 5,
         padding: 25
     },
     video: {
