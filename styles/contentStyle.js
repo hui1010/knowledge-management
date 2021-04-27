@@ -9,26 +9,29 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         marginVertical: 10,
-        color: "#1a1b1c"
-    },
-    author: {
-        textAlign: 'center',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginVertical: 10,
-    },
-    excerpt: {
-        color: "#595959",
-        fontSize: 20,
-        marginVertical: 10,
-    },
-    link: {
-        marginVertical: 10,
-        backgroundColor: "#172a3a",
-        borderRadius: 5
+        color: "#172a3a"
     },
     paragraph: {
-        marginBottom: 10
+        marginVertical: 10
+    },
+    block :{
+        backgroundColor:"white",
+        shadowColor: "#d9d9d9",
+        shadowOffset: {
+            width: 2,
+            height: 2,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 5,
+        elevation: 1,
+        marginVertical: 5,
+        padding: 25
+    },
+    video: {
+        marginVertical: 10
+    }, 
+    divider: {
+        borderBottomColor: '#d9d9d9',
+        borderBottomWidth: 2,
     }
 })

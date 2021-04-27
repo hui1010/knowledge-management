@@ -37,7 +37,16 @@ export default function Post({route, navigation}) {
     const videoLink = acf.our_video?.trim()
     const videoSrc = videoLink?.substring(videoLink.indexOf("src") + 5, videoLink.indexOf(" frameborder")-1)
     const youtubeId = videoSrc?.substring(videoSrc.lastIndexOf("/"))
-    console.log(videoSrc)
+
+    const script = acf.our_script?.trim().replace(/['"]+/g, '')
+
+    const includes = acf.our_includes?.trim().replace(/['"]+/g, '')
+
+    const version = acf.our_version?.trim().replace(/['"]+/g, '')
+
+    const tags = acf.our_tags?.trim().replace(/['"]+/g, '')
+    console.log(tags)
+
    
     useEffect(()=>{fetchAuthorName()}, [])
 
@@ -49,24 +58,25 @@ export default function Post({route, navigation}) {
     return (
         <ScrollView scrollIndicatorInsets={{right: 0}}>
             <View style={styles.content}>
-                <Text style={styles.title}>{title.rendered}</Text>
-                <View>
-                    {/* <YoutubePlayer height={200} play={false} videoId={youtubeId}/> */}
+                <View style={styles.block}>
+                    <Text style={styles.title}>{title.rendered}</Text>
+                </View>
+                <View style={styles.video}>
                     <WebView 
                         style={{height: 188}}
                         source={{ uri: videoSrc }}
                         scrollEnabled={false}
                     />
                 </View> 
-                {
-                    descriptionContent.map((item, index) => {
-                        return (
-                            <View key={index} style={styles.paragraph}>
-                                <Text>{item}</Text>
-                            </View>
-                        )  
-                    })
-                }  
+                <View style={styles.block}>
+                    <Text style={styles.paragraph}>{script}</Text>
+                    <View style={styles.divider}/>
+                    <Text style={styles.paragraph}>{includes}</Text>
+                    <View style={styles.divider}/>
+                    <Text style={styles.paragraph}>{version}</Text>
+                    <View style={styles.divider}/>
+                    <Text style={styles.paragraph}>{tags}</Text> 
+                </View>                
             </View>
         </ScrollView>
     )  

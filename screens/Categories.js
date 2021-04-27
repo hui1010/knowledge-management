@@ -27,6 +27,7 @@ export default function Categories ({navigation}) {
     return (
         <View>
             <FlatList 
+            
                 scrollIndicatorInsets={{right: 0}}
                 keyExtractor={(item) => `${item.id}`}
                 data={categories} 
